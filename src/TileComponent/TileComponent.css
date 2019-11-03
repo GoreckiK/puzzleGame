@@ -1,0 +1,7 @@
+.tile {
+    width: 333px;
+    height: 333px;
+    border: 1px solid lightblue;
+    background-image: url("../colibra-logo.png");
+    position: absolute;
+}

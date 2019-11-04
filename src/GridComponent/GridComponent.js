@@ -2,8 +2,10 @@ import React from 'react';
 import { Grid } from '@material-ui/core'
 import './GridComponent.css'
 import GridItemComponent from "../GridItemComponent/GridItemComponent";
+import AlertComponent from "../AlertComponent/AlertComponent";
 
 const GridComponent = (props) => {
+
     return (
         <Grid container
               spacing={0}
@@ -15,6 +17,7 @@ const GridComponent = (props) => {
                     return (<GridItemComponent key={i} id={i} setNumberOfTilesInDock={props.setNumberOfTilesInDock} numberOfTiles={props.numberOfTiles}/>)
                 })
             }
+            { props.numberOfTiles === 8 ? <AlertComponent open={true}/> : null}
         </Grid>
     )
 };

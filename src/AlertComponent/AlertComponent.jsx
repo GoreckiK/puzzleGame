@@ -15,7 +15,6 @@ export default function AlertComponent(props) {
 
 
     useEffect(() => {
-        console.log(props.timerId)
     });
 
     return (

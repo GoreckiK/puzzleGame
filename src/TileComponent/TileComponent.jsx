@@ -1,9 +1,13 @@
 import React from 'react';
 import './TileComponent.css';
-import TimerComponent from "../TimerComponent/TimerComponent";
+// import TimerComponent from "../TimerComponent/TimerComponent";
 
 const TileComponent = (props) => {
+    // const [counter, setCounter] = useState(0);
+
+
     const handleDragStart = (e) => {
+        // const timeCounterId =
         const target = e.target;
         e.dataTransfer.setData('tileId', target.id);
     };
@@ -11,6 +15,10 @@ const TileComponent = (props) => {
     const handleDragOver = (e) => {
         e.stopPropagation();
     };
+
+    // const handleDragExit = (e) => {
+    //     clearInterval(timeCounterId);
+    // };
 
     const divStyle = {
         backgroundPositionX: `-${props.x}px`,

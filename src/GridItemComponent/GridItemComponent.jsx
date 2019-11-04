@@ -14,6 +14,12 @@ const GridItemComponent = (props) => {
         }
     };
 
+    // const timerId = setInterval(() => {
+    //     setCounter((prevState) => {
+    //         return prevState + 1
+    //     })
+    // }, 1000);
+
     const handleDragOver = (e) => {
         e.preventDefault();
     };

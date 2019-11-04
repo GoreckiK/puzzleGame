@@ -1,0 +1,6 @@
+.clock {
+    width: 1000px;
+    font-size: 36px;
+    display: flex;
+    justify-content: flex-end;
+}

@@ -7,10 +7,10 @@ const GridItemComponent = (props) => {
         e.preventDefault();
         const tileCoordinance = e.dataTransfer.getData('tileId');
         const tile = document.getElementById(tileCoordinance);
-        // debugger;
         if (tileCoordinance === tileId.toString()) {
             e.target.appendChild(tile);
             tile.className = 'tile-no-border';
+            props.setNumberOfTilesInDock(props.numberOfTiles - 1);
         }
     };
 

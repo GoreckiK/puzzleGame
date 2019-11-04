@@ -1,0 +1,8 @@
+.MuiPaper-root {
+    text-align: center;
+    top: -500px
+}
+
+#alert-dialog-description {
+    font-size: 50px;
+}

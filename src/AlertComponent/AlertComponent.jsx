@@ -8,20 +8,18 @@ export default function AlertComponent(props) {
     const [open, setOpen] = React.useState(props.open);
 
     const handleClose = () => {
+        props.clear();
         setTimeout(() => {
             setOpen(false);
         }, 5000)
     };
 
-
-    useEffect(() => {
-    });
-
     return (
         <div>
             <Dialog
                 open={open}
-                onEntered={handleClose}
+                // onEntered={handleClose}
+                onEntering={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >

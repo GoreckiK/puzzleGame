@@ -103,7 +103,7 @@ export default class AlternativeMediaComponent extends React.Component {
                                                     handleCounterStart={this.handleCounterStart}
                                                     isRunning={this.state.isRunning}
                                                     newGame={this.state.newGame}/>
-                    {this.state.numberOfTilesInDock === 8 ?
+                    {this.state.numberOfTilesInDock === 0 ?
                         <AlertComponent open={true}
                                         handleCounterStop={this.handleCounterStop}
                                         handleNewGame={this.handleNewGame}

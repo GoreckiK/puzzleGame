@@ -19,8 +19,6 @@ const TileComponent = (props) => {
         zIndex: props.id * Math.floor(Math.random() * 1000),
         left: Math.floor(Math.random() * 650),
         top: Math.floor(Math.random() * 200)
-        // left: props.id % 2 === 0 ? 300 : props.id % 3 === 0 ? 500 : props.id % 5 === 0 ? 600 : 100,
-        // top: props.id % 2 === 0 ? 40 : props.id % 3 === 0 ? 80 : props.id % 5 === 0 ? 140 : 110
     };
 
     return (

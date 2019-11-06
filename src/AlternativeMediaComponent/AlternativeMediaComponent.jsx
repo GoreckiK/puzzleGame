@@ -4,6 +4,7 @@ import AlertComponent from "../AlertComponent/AlertComponent";
 import './AlternativeMediaComponent.css'
 import AlternativePuzzleDockComponent from "../AlternativePuzzleDockComponent/AlternativePuzzleDockComponent";
 import GridComponent from "../GridComponent/GridComponent";
+import ScoreBoard from "../ScoreBoard/ScoreBoard";
 
 export default class AlternativeMediaComponent extends React.Component {
 
@@ -14,13 +15,15 @@ export default class AlternativeMediaComponent extends React.Component {
             isRunning: false,
             timeoutId: null,
             newGame: true,
-            numberOfTilesInDock: 0
+            numberOfTilesInDock: 0,
+            savedScores: []
         };
         this.handleCounterStop = this.handleCounterStop.bind(this);
         this.handleCounterStart = this.handleCounterStart.bind(this);
         this.handleNewGame = this.handleNewGame.bind(this);
         this.handleNumberOfTilesInDockChange = this.handleNumberOfTilesInDockChange.bind(this);
         this.handlePenalty = this.handlePenalty.bind(this);
+        this.handleSaveScore = this.handleSaveScore.bind(this);
         this.puzzleDock = React.createRef();
     }
 
@@ -54,20 +57,27 @@ export default class AlternativeMediaComponent extends React.Component {
 
     handlePenalty() {
         this.setState({
-            counter: this.state.counter + 5
+            counter: this.state.counter + 5000
         })
     }
+
+    handleSaveScore() {
+        this.setState( {
+            savedScores: [...this.state.savedScores, this.state.counter]
+        })
+    }
+
     componentDidMount() {
         this.setState({
-            numberOfTilesInDock: this.puzzleDock.current.children[1].childElementCount
+            numberOfTilesInDock: this.puzzleDock.current.children[2].childElementCount
         })
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.isRunning !== this.state.isRunning && this.state.isRunning === true) {
             let id = setInterval(() => {
-                this.setState({counter: this.state.counter + 1})
-            }, 1);
+                this.setState({counter: this.state.counter + 10})
+            }, 10);
 
             this.setState({
                 timeoutId: id
@@ -79,26 +89,30 @@ export default class AlternativeMediaComponent extends React.Component {
 
     render() {
         return (
-            <div className="alternative-media-container" ref={this.puzzleDock}>
-                <TimerComponent counter={this.state.counter}/>
-                <GridComponent puzzleDimension={this.props.puzzleDimension}
-                               setNumberOfTilesInDock={this.handleNumberOfTilesInDockChange}
-                               numberOfTilesInDock={this.state.numberOfTilesInDock}
-                               handlePenalty={this.handlePenalty}
-                               newGame={this.state.newGame}
-                />
-                <AlternativePuzzleDockComponent puzzleDimension={this.props.puzzleDimension}
-                                                handleCounterStart={this.handleCounterStart}
-                                                isRunning={this.state.isRunning}
-                                                newGame={this.state.newGame}/>
-                { this.state.numberOfTilesInDock === 0 ?
-                    <AlertComponent open={true}
-                                    handleCounterStop={this.handleCounterStop}
-                                    handleNewGame={this.handleNewGame}
-                                    setNumberOfTilesInDock={this.handleNumberOfTilesInDockChange}
+            <div className="game-container">
+                <ScoreBoard savedScores={this.state.savedScores}/>
+                <div className="alternative-media-container" ref={this.puzzleDock}>
+                    <TimerComponent counter={this.state.counter}/>
+                    <GridComponent puzzleDimension={this.props.puzzleDimension}
+                                   setNumberOfTilesInDock={this.handleNumberOfTilesInDockChange}
+                                   numberOfTilesInDock={this.state.numberOfTilesInDock}
+                                   handlePenalty={this.handlePenalty}
+                                   newGame={this.state.newGame}
                     />
-                    : null
-                }
+                    <AlternativePuzzleDockComponent puzzleDimension={this.props.puzzleDimension}
+                                                    handleCounterStart={this.handleCounterStart}
+                                                    isRunning={this.state.isRunning}
+                                                    newGame={this.state.newGame}/>
+                    {this.state.numberOfTilesInDock === 8 ?
+                        <AlertComponent open={true}
+                                        handleCounterStop={this.handleCounterStop}
+                                        handleNewGame={this.handleNewGame}
+                                        setNumberOfTilesInDock={this.handleNumberOfTilesInDockChange}
+                                        handleSaveScore={this.handleSaveScore}
+                        />
+                        : null
+                    }
+                </div>
             </div>
         )
     }

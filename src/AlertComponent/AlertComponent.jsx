@@ -11,6 +11,7 @@ export default function AlertComponent(props) {
         props.handleCounterStop();
         setTimeout(() => {
             setOpen(false);
+            props.handleSaveScore();
             props.handleNewGame();
             props.setNumberOfTilesInDock(9);
         }, 5000);

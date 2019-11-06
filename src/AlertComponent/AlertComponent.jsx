@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -8,17 +8,18 @@ export default function AlertComponent(props) {
     const [open, setOpen] = React.useState(props.open);
 
     const handleClose = () => {
-        props.clear();
+        props.handleCounterStop();
         setTimeout(() => {
             setOpen(false);
-        }, 5000)
+            props.handleNewGame();
+            props.setNumberOfTilesInDock(9);
+        }, 5000);
     };
 
     return (
         <div>
             <Dialog
                 open={open}
-                // onEntered={handleClose}
                 onEntering={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"

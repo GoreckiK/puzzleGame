@@ -10,15 +10,12 @@ const GridItemComponent = (props) => {
         if (tileCoordinance === tileId.toString()) {
             e.target.appendChild(tile);
             tile.className = 'tile-no-border';
-            props.setNumberOfTilesInDock(props.numberOfTiles - 1);
+            props.setNumberOfTilesInDock(props.numberOfTilesInDock - 1);
+        }
+        else {
+            props.handlePenalty();
         }
     };
-
-    // const timerId = setInterval(() => {
-    //     setCounter((prevState) => {
-    //         return prevState + 1
-    //     })
-    // }, 1000);
 
     const handleDragOver = (e) => {
         e.preventDefault();

@@ -69,7 +69,7 @@ export default class GameContainer extends React.Component {
 
     componentDidMount() {
         this.setState({
-            numberOfTilesInDock: this.puzzleDock.current.children[2].childElementCount
+            numberOfTilesInDock: this.puzzleDock.current && this.puzzleDock.current.children[2].childElementCount
         })
     }
 

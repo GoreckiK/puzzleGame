@@ -18,7 +18,7 @@ export default function AlertComponent(props) {
     };
 
     return (
-        <div>
+        <div className="alarm-container">
             <Dialog
                 open={open}
                 onEntering={handleClose}

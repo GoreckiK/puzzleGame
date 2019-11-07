@@ -30,7 +30,10 @@
     ]
   },
   "devDependencies": {
+    "@material-ui/core": "^4.6.0",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1"
+    "enzyme-adapter-react-16": "^1.15.1",
+    "jest": "^24.9.0",
+    "jest-mock": "^24.9.0"
   }
 }

@@ -14,12 +14,7 @@ const GridComponent = (props) => {
             {[...Array(props.puzzleDimension * props.puzzleDimension)]
                 .map((e, i) => {
                     return (
-                        <GridItemComponent
-                            key={i}
-                            id={i}
-                            setNumberOfTilesInDock={props.setNumberOfTilesInDock}
-                            numberOfTilesInDock={props.numberOfTilesInDock}
-                            handlePenalty={props.handlePenalty}/>)
+                        <GridItemComponent key={i} id={i}/>)
                 })
             }
         </Grid>

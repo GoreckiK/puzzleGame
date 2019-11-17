@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Grid } from '@material-ui/core'
+import {MyContext} from "../MyProvider/MyProvider";
 
 const GridItemComponent = (props) => {
+    const myContext = useContext(MyContext);
 
     const handleDrop = (e, tileId) => {
         e.preventDefault();
@@ -10,10 +12,10 @@ const GridItemComponent = (props) => {
         if (tileCoordinance === tileId.toString()) {
             e.target.appendChild(tile);
             tile.className = 'tile-no-border';
-            props.setNumberOfTilesInDock(props.numberOfTilesInDock - 1);
+            myContext.setNumberOfTilesInDock(myContext.numberOfTilesInDock - 1);
         }
         else {
-            props.handlePenalty();
+            myContext.handlePenalty();
         }
     };
 

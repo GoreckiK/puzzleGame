@@ -5,9 +5,9 @@ import './GameContainer.css'
 import PuzzleDockComponent from "../PuzzleDockComponent/PuzzleDockComponent";
 import GridComponent from "../GridComponent/GridComponent";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
+import {MyContext} from "../MyProvider/MyProvider";
 
 export default class GameContainer extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -90,29 +90,39 @@ export default class GameContainer extends React.Component {
     render() {
         return (
             <div className="game-container">
-                <ScoreBoard savedScores={this.state.savedScores}/>
-                <div className="media-container" ref={this.puzzleDock}>
-                    <TimerComponent counter={this.state.counter}/>
-                    <GridComponent puzzleDimension={this.props.puzzleDimension}
-                                   setNumberOfTilesInDock={this.handleNumberOfTilesInDockChange}
-                                   numberOfTilesInDock={this.state.numberOfTilesInDock}
-                                   handlePenalty={this.handlePenalty}
-                                   newGame={this.state.newGame}
-                    />
-                    <PuzzleDockComponent puzzleDimension={this.props.puzzleDimension}
-                                         handleCounterStart={this.handleCounterStart}
-                                         isRunning={this.state.isRunning}
-                                         newGame={this.state.newGame}/>
-                    {this.state.numberOfTilesInDock === 0 ?
-                        <AlertComponent open={true}
-                                        handleCounterStop={this.handleCounterStop}
-                                        handleNewGame={this.handleNewGame}
-                                        setNumberOfTilesInDock={this.handleNumberOfTilesInDockChange}
-                                        handleSaveScore={this.handleSaveScore}
-                        />
-                        : null
-                    }
-                </div>
+                <MyContext.Provider value={{
+                    counter: this.state.counter,
+                    isRunning: this.state.isRunning,
+                    timeoutId: this.state.timeoutId,
+                    newGame: this.state.newGame,
+                    numberOfTilesInDock: this.state.numberOfTilesInDock,
+                    savedScores: this.state.savedScores,
+                    handleCounterStop: this.handleCounterStop,
+                    handleCounterStart: this.handleCounterStart,
+                    handleNewGame: this.handleNewGame,
+                    setNumberOfTilesInDock: this.handleNumberOfTilesInDockChange,
+                    handlePenalty: this.handlePenalty,
+                    handleSaveScore: this.handleSaveScore
+                }}>
+                    <ScoreBoard savedScores={this.state.savedScores}/>
+                    <div className="media-container" ref={this.puzzleDock}>
+                        <TimerComponent counter={this.state.counter}/>
+                        <GridComponent puzzleDimension={this.props.puzzleDimension}/>
+                        <PuzzleDockComponent puzzleDimension={this.props.puzzleDimension}
+                                             handleCounterStart={this.handleCounterStart}
+                                             isRunning={this.state.isRunning}
+                                             newGame={this.state.newGame}/>
+                        {this.state.numberOfTilesInDock === 0 ?
+                            <AlertComponent open={true}
+                                            handleCounterStop={this.handleCounterStop}
+                                            handleNewGame={this.handleNewGame}
+                                            setNumberOfTilesInDock={this.handleNumberOfTilesInDockChange}
+                                            handleSaveScore={this.handleSaveScore}
+                            />
+                            : null
+                        }
+                    </div>
+                </MyContext.Provider>
             </div>
         )
     }

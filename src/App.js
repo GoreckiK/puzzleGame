@@ -1,11 +1,11 @@
-import React from 'react';
+import React  from 'react';
 import './App.css';
 import GameContainer from "./GameContainer/GameContainer.jsx";
+// import { MyProvider } from "./MyProvider/MyProvider";
 
 function App() {
-    const puzzleDimension = 3;
     return (
-        <GameContainer puzzleDimension={puzzleDimension}/>
+        <GameContainer puzzleDimension={3}/>
   );
 }
 
